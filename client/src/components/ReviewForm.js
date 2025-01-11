@@ -7,6 +7,22 @@ const ReviewForm = ({ onSubmit }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
+        <label>Customer Name</label>
+        <input
+          type="text"
+          {...register('customerName', { required: 'Customer name is required' })}
+        />
+        {errors.customerName && <p>{errors.customerName.message}</p>}
+      </div>
+      <div>
+        <label>Service Type</label>
+        <input
+          type="text"
+          {...register('serviceType', { required: 'Service type is required' })}
+        />
+        {errors.serviceType && <p>{errors.serviceType.message}</p>}
+      </div>
+      <div>
         <label>Rating</label>
         <select {...register('rating', { required: 'Rating is required' })}>
           <option value="">Select rating</option>

@@ -1,59 +1,49 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 
-const BookingForm = ({ onSubmit }) => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+const BookingForm = () => {
+  const initialValues = {
+    name: '',
+    email: '',
+    date: '',
+  };
+
+  const validationSchema = Yup.object({
+    name: Yup.string().required('Required'),
+    email: Yup.string().email('Invalid email format').required('Required'),
+    date: Yup.date().required('Required'),
+  });
+
+  const onSubmit = (values) => {
+    console.log('Form data', values);
+  };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <label>Name</label>
-        <input
-          type="text"
-          {...register('name', { required: 'Name is required' })}
-        />
-        {errors.name && <p>{errors.name.message}</p>}
-      </div>
-      <div>
-        <label>Email</label>
-        <input
-          type="email"
-          {...register('email', { required: 'Email is required' })}
-        />
-        {errors.email && <p>{errors.email.message}</p>}
-      </div>
-      <div>
-        <label>Phone Number</label>
-        <input
-          type="tel"
-          {...register('phone', { required: 'Phone number is required' })}
-        />
-        {errors.phone && <p>{errors.phone.message}</p>}
-      </div>
-      <div>
-        <label>Service</label>
-        <input
-          type="text"
-          {...register('service', { required: 'Service is required' })}
-        />
-        {errors.service && <p>{errors.service.message}</p>}
-      </div>
-      <div>
-        <label>Date</label>
-        <input
-          type="date"
-          {...register('date', { required: 'Date is required' })}
-        />
-        {errors.date && <p>{errors.date.message}</p>}
-      </div>
-      <div>
-        <label>Additional Notes</label>
-        <textarea
-          {...register('notes')}
-        />
-      </div>
-      <button type="submit">Book Service</button>
-    </form>
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={onSubmit}
+    >
+      <Form>
+        <div>
+          <label htmlFor="name">Name</label>
+          <Field type="text" id="name" name="name" />
+          <ErrorMessage name="name" component="div" />
+        </div>
+        <div>
+          <label htmlFor="email">Email</label>
+          <Field type="email" id="email" name="email" />
+          <ErrorMessage name="email" component="div" />
+        </div>
+        <div>
+          <label htmlFor="date">Date</label>
+          <Field type="date" id="date" name="date" />
+          <ErrorMessage name="date" component="div" />
+        </div>
+        <button type="submit">Submit</button>
+      </Form>
+    </Formik>
   );
 };
 

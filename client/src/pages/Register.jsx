@@ -1,6 +1,8 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import axiosInstance from '../utils/axiosInstance';
+import FormInput from '../components/FormInput';
+import Button from '../components/Button';
 
 const Register = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -17,23 +19,9 @@ const Register = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <label>Email</label>
-        <input
-          type="email"
-          {...register('email', { required: 'Email is required' })}
-        />
-        {errors.email && <p>{errors.email.message}</p>}
-      </div>
-      <div>
-        <label>Password</label>
-        <input
-          type="password"
-          {...register('password', { required: 'Password is required' })}
-        />
-        {errors.password && <p>{errors.password.message}</p>}
-      </div>
-      <button type="submit">Register</button>
+      <FormInput label="Email" type="email" register={register} required="Email is required" errors={errors} />
+      <FormInput label="Password" type="password" register={register} required="Password is required" errors={errors} />
+      <Button type="submit">Register</Button>
     </form>
   );
 };

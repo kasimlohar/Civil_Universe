@@ -19,8 +19,11 @@ const Register = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      <FormInput label="Name" type="text" register={register} required="Name is required" errors={errors} />
       <FormInput label="Email" type="email" register={register} required="Email is required" errors={errors} />
+      <FormInput label="Phone" type="tel" register={register} required="Phone number is required" errors={errors} />
       <FormInput label="Password" type="password" register={register} required="Password is required" errors={errors} />
+      <FormInput label="Confirm Password" type="password" register={register} required="Confirm password is required" errors={errors} />
       <Button type="submit">Register</Button>
     </form>
   );

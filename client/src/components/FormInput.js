@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 const FormInput = ({ label, type, register, required, errors }) => {
   return (
-    <div>
+    <div className="form-input">
       <label>{label}</label>
-      <input type={type} {...register(label.toLowerCase(), { required })} />
-      {errors[label.toLowerCase()] && <p>{errors[label.toLowerCase()].message}</p>}
+      <input type={type} {...register(label.toLowerCase(), { required })} className="input-field" />
+      {errors[label.toLowerCase()] && <p className="error-message">{errors[label.toLowerCase()].message}</p>}
     </div>
   );
 };

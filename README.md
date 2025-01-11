@@ -4,39 +4,59 @@
 
 ```
 Civil_Universe/
-├──.vscode/
+├── .vscode/
 ├── client/
 │   ├── node_modules/
 │   ├── public/
 │   │   └── index.html
 │   ├── src/
 │   │   ├── components/
-│   │   │   ├── BussinessListings.js
-│   │   │   ├── Profile.js
+│   │   │   ├── Booking.js
+│   │   │   ├── BookingForm.js
+│   │   │   ├── BusinessCard.js
+│   │   │   ├── BusinessList.js
+│   │   │   ├── BusinessListings.js
+│   │   │   ├── Button.js
+│   │   │   ├── Card.js
+│   │   │   ├── FormInput.js
 │   │   │   ├── Home.js
-│   │   │   └── Booking.js
+│   │   │   ├── Profile.js
+│   │   │   └── ReviewForm.js
 │   │   ├── pages/
-│   │   │   ├── Home.jsx
+│   │   │   ├── BusinessProfile.jsx
 │   │   │   ├── Footer.jsx
-│   │   │   └── Navbar.jsx
+│   │   │   ├── Home.jsx
+│   │   │   ├── Login.jsx
+│   │   │   ├── Navbar.jsx
+│   │   │   └── Register.jsx
+│   │   ├── slices/
+│   │   │   ├── authSlice.js
+│   │   │   └── businessSlice.js
 │   │   ├── styles/
-│   │   |   ├── tailwindcss
-│   │   |   └── index.css
+│   │   │   ├── tailwindcss
+│   │   │   └── index.css
+│   │   ├── utils/
+│   │   │   └── axiosInstance.js
 │   │   ├── App.js
 │   │   ├── App.jsx
-│   │   └── index.js
+│   │   ├── index.js
+│   │   └── store.js
 │   ├── .env
 │   ├── package-lock.json
 │   ├── package.json
 │   ├── postcss.config.js
 │   └── tailwind.config.js
-├──node_modules/
+├── node_modules/
 ├── server/
+│   ├── index.js
+│   ├── package-lock.json
+│   └── package.json
 ├── .env
 ├── .gitignore
 ├── package-lock.json
 ├── package.json
 └── README.md
+
 ```
 
 ### Root Directory (`Civil_Universe/`)

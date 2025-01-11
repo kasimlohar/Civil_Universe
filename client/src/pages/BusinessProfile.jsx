@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ReviewForm from '../components/ReviewForm';
+import BookingForm from '../components/BookingForm';
 import Card from '../components/Card';
 
 const BusinessProfile = ({ name, description, services, contactInfo }) => {
@@ -7,6 +8,10 @@ const BusinessProfile = ({ name, description, services, contactInfo }) => {
 
   const handleReviewSubmit = (data) => {
     setReviews([...reviews, data]);
+  };
+
+  const handleBookingSubmit = (data) => {
+    console.log('Booking submitted:', data);
   };
 
   return (
@@ -23,6 +28,9 @@ const BusinessProfile = ({ name, description, services, contactInfo }) => {
       </Card>
       <Card title="Contact Info">
         <p>{contactInfo}</p>
+      </Card>
+      <Card title="Book a Service">
+        <BookingForm onSubmit={handleBookingSubmit} />
       </Card>
       <Card title="Reviews">
         <ReviewForm onSubmit={handleReviewSubmit} />

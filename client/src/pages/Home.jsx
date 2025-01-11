@@ -1,6 +1,7 @@
 import React from 'react';
+import BusinessCard from '../components/BusinessCard';
 
-function Home() {
+const Home = () => {
   return (
     <div className="min-h-screen bg-gray-100">
       {/* Header */}
@@ -21,26 +22,14 @@ function Home() {
       <section className="mt-10 p-4">
         <h2 className="text-2xl font-semibold mb-4">Featured Businesses</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {/* Business Card */}
-          <div className="bg-white p-4 rounded-lg shadow-md">
-            <h3 className="text-xl font-bold">Business Name 1</h3>
-            <p className="text-gray-600">Description of the business.</p>
-          </div>
-          {/* Business Card */}
-          <div className="bg-white p-4 rounded-lg shadow-md">
-            <h3 className="text-xl font-bold">Business Name 2</h3>
-            <p className="text-gray-600">Description of the business.</p>
-          </div>
-          {/* Business Card */}
-          <div className="bg-white p-4 rounded-lg shadow-md">
-            <h3 className="text-xl font-bold">Business Name 3</h3>
-            <p className="text-gray-600">Description of the business.</p>
-          </div>
+          <BusinessCard name="Business Name 1" location="Location 1" rating={4.5} />
+          <BusinessCard name="Business Name 2" location="Location 2" rating={4.0} />
+          <BusinessCard name="Business Name 3" location="Location 3" rating={3.5} />
           {/* Add more business cards as needed */}
         </div>
       </section>
     </div>
   );
-}
+};
 
 export default Home;

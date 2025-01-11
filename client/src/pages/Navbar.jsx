@@ -1,10 +1,27 @@
-
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Navbar() {
+  const isAuthenticated = !!localStorage.getItem('token');
+
   return (
-    <nav>
-      <h2>Navbar</h2>
+    <nav className="navbar">
+      <h2>Civil Universe</h2>
+      <ul>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/business-listings">Business Listings</Link></li>
+        {isAuthenticated ? (
+          <>
+            <li><Link to="/profile">Profile</Link></li>
+            <li><Link to="/logout">Logout</Link></li>
+          </>
+        ) : (
+          <>
+            <li><Link to="/login">Login</Link></li>
+            <li><Link to="/register">Register</Link></li>
+          </>
+        )}
+      </ul>
     </nav>
   );
 }

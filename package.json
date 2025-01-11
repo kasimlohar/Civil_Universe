@@ -4,7 +4,7 @@
   "description": "A MERN stack project",
   "main": "index.js",
   "scripts": {
-    "start": "node server/index.js",
+    "start": "react-scripts start",
     "client": "cd client && npm start",
     "server": "cd server && npm start",
     "dev": "concurrently \"npm run server\" \"npm run client\""
@@ -14,7 +14,8 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.9.4"
+    "mongoose": "^8.9.4",
+    "react-scripts": "^5.0.1"
   },
   "author": "",
   "license": "ISC"

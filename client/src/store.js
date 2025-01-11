@@ -7,6 +7,8 @@ const store = configureStore({
     auth: authReducer,
     business: businessReducer,
   },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
+  devTools: process.env.NODE_ENV !== 'production',
 });
 
 export default store;

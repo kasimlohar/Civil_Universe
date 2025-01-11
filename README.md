@@ -1,175 +1,119 @@
 # Civil Universe
 
-## Project Structure
+Civil Universe is a platform for finding and booking civil-related businesses such as contractors, architects, interior designers, and more.
 
-```
-Civil_Universe/
-├── .vscode/
-├── client/
-│   ├── node_modules/
-│   ├── public/
-│   │   └── index.html
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── Booking.js
-│   │   │   ├── BookingForm.js
-│   │   │   ├── BusinessCard.js
-│   │   │   ├── BusinessList.js
-│   │   │   ├── BusinessListings.js
-│   │   │   ├── Button.js
-│   │   │   ├── Card.js
-│   │   │   ├── FormInput.js
-│   │   │   ├── Home.js
-│   │   │   ├── Profile.js
-│   │   │   └── ReviewForm.js
-│   │   ├── pages/
-│   │   │   ├── BusinessProfile.jsx
-│   │   │   ├── Footer.jsx
-│   │   │   ├── Home.jsx
-│   │   │   ├── Login.jsx
-│   │   │   ├── Navbar.jsx
-│   │   │   └── Register.jsx
-│   │   ├── slices/
-│   │   │   ├── authSlice.js
-│   │   │   └── businessSlice.js
-│   │   ├── styles/
-│   │   │   ├── tailwindcss
-│   │   │   └── index.css
-│   │   ├── utils/
-│   │   │   └── axiosInstance.js
-│   │   ├── App.js
-│   │   ├── App.jsx
-│   │   ├── index.js
-│   │   └── store.js
-│   ├── .env
-│   ├── package-lock.json
-│   ├── package.json
-│   ├── postcss.config.js
-│   └── tailwind.config.js
-├── node_modules/
-├── server/
-│   ├── index.js
-│   ├── package-lock.json
-│   └── package.json
-├── .env
-├── .gitignore
-├── package-lock.json
-├── package.json
-└── README.md
+## Features
 
-```
+- User registration and login
+- Business listings with search and filter options
+- Featured businesses
+- Business profiles
+- Booking services
+- User profiles
 
-### Root Directory (`Civil_Universe/`)
+## Technologies Used
 
-- **.vscode/**: Contains Visual Studio Code specific settings and configurations.
-- **node_modules/**: Contains all the npm packages required for the server-side of the project.
-- **server/**: Likely contains the server-side code for your application.
-- **.env**: Environment variables for the server-side.
-- **.gitignore**: Specifies files and directories to be ignored by Git.
-- **package-lock.json**: Automatically generated file that describes the exact tree of dependencies.
-- **package.json**: Lists the project's dependencies and scripts for the server-side.
-- **README.md**: Documentation file for the project.
+- Frontend: React, Redux, Tailwind CSS
+- Backend: Node.js, Express, MongoDB, Mongoose
+- Authentication: JWT, bcryptjs
 
-### Client Directory (`client/`)
+## Getting Started
 
-- **node_modules/**: Contains all the npm packages required for the client-side of the project.
-- **public/**: Contains static files that are served directly by the web server.
-  - **index.html**: The main HTML file that is served by the web server.
-- **src/**: Contains the source code for the client-side of the project.
-  - **components/**: Contains reusable React components.
-    - **BussinessListings.js**: Component for displaying business listings.
-    - **Profile.js**: Component for displaying user profiles.
-    - **Home.js**: Component for the home page.
-    - **Booking.js**: Component for booking functionality.
-  - **pages/**: Contains page-level components.
-    - **Home.jsx**: Home page component.
-    - **Footer.jsx**: Footer component.
-    - **Navbar.jsx**: Navbar component.
-  - **styles/**: Contains styling files.
-    - **tailwindcss**: Directory for Tailwind CSS configurations.
-    - **index.css**: Main CSS file for the project.
-  - **App.js**: Main application component.
-  - **App.jsx**: Another main application component, possibly used for different purposes or being refactored.
-  - **index.js**: Entry point for the React application.
-- **.env**: Environment variables for the client-side.
-- **package-lock.json**: Automatically generated file that describes the exact tree of dependencies for the client-side.
-- **package.json**: Lists the project's dependencies and scripts for the client-side.
-- **postcss.config.js**: Configuration file for PostCSS.
-- **tailwind.config.js**: Configuration file for Tailwind CSS.
+### Prerequisites
 
-## Installed Packages
+- Node.js
+- MongoDB
 
-### Client-side
-
-- React
-- React DOM
-- React Scripts
-- Axios
-- Redux
-- React Redux
-- @reduxjs/toolkit
-- TailwindCSS
-
-### Server-side
-
-- Express
-- Mongoose
-- Dotenv
-- Jsonwebtoken
-
-## Project Setup
+### Installation
 
 1. Clone the repository:
+
    ```sh
-   git clone <repository-url>
-   cd Civil_Universe
+   git clone https://github.com/your-username/civil_universe.git
+   cd civil_universe
    ```
 
 2. Install dependencies for the client:
+
    ```sh
    cd client
    npm install
    ```
 
 3. Install dependencies for the server:
+
    ```sh
    cd ../server
    npm install
    ```
 
-## Recent Changes
+### Environment Variables
 
-### Added routing for Home, Login, Register, and BusinessProfile pages in App.jsx
-- Updated `client/src/App.jsx` to include routes for Home, Login, Register, and BusinessProfile pages.
+Create a `.env` file in the `server` directory and add the following environment variables:
 
-### Installed react-router-dom with legacy peer dependencies
-- Resolved dependency conflicts by installing `react-router-dom` with the `--legacy-peer-deps` flag.
-
-```sh
-npm install react-router-dom --legacy-peer-deps
+```properties
+MONGO_URI=mongodb+srv://<username>:<password>@<cluster-url>/<database>?retryWrites=true&w=majority
+JWT_SECRET=your_jwt_secret
 ```
 
-### Updated package.json and package-lock.json
-- Added `react-router-dom` to dependencies in `package.json` and `package-lock.json`.
+Replace `<username>`, `<password>`, `<cluster-url>`, and `<database>` with your actual MongoDB credentials and database name.
 
-## Running the Project
+### Running the Application
 
-1. Start the client:
+1. Start the backend server:
+
    ```sh
-   cd client
+   cd server
+   node index.js
+   ```
+
+2. Start the frontend development server:
+
+   ```sh
+   cd ../client
    npm start
    ```
 
-2. Start the server:
-   ```sh
-   cd ../server
-   npm start
-   ```
+### API Endpoints
 
-## Contributing
+- `GET /api/businesses`: Get all businesses
+- `GET /api/businesses/featured`: Get featured businesses
+- `POST /api/businesses`: Create a new business (protected route)
+- `POST /api/users/register`: Register a new user
+- `POST /api/users/login`: Login user
 
-Please follow the [contribution guidelines](CONTRIBUTING.md) for submitting pull requests to this repository.
+### Frontend Components
 
-## License
+- `Profile`: Displays user profile information
+- `Home`: Displays featured businesses and search bar
+- `FormInput`: Custom input component with validation
+- `Card`: Custom card component
+- `Button`: Custom button component
+- `BusinessListings`: Displays business listings with search and filter options
+- `BusinessList`: Displays paginated list of businesses
+- `BusinessCard`: Displays business details in a card format
+- `BookingForm`: Form for booking services
+- `Booking`: Booking page with calendar and status tracking
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+### Backend Structure
+
+- `models`: Contains Mongoose models
+  - `Business.js`: Business model
+  - `User.js`: User model
+- `controllers`: Contains controller functions
+  - `businessController.js`: Business controller
+  - `userController.js`: User controller
+- `routes`: Contains route definitions
+  - `businesses.js`: Business routes
+  - `users.js`: User routes
+- `middleware`: Contains middleware functions
+  - `auth.js`: Authentication middleware
+- `db.js`: Database connection setup
+
+### Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request.
+
+### License
+
+This project is licensed under the MIT License.

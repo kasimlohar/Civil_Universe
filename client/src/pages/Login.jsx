@@ -21,6 +21,8 @@ const Login = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <FormInput label="Email" type="email" register={register} required="Email is required" errors={errors} />
       <FormInput label="Password" type="password" register={register} required="Password is required" errors={errors} />
+      <FormInput label="Username" type="text" register={register} required="Username is required" errors={errors} />
+      <FormInput label="Phone Number" type="tel" register={register} required="Phone number is required" errors={errors} />
       <Button type="submit">Login</Button>
     </form>
   );

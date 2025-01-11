@@ -23,6 +23,14 @@ const BookingForm = ({ onSubmit }) => {
         {errors.email && <p>{errors.email.message}</p>}
       </div>
       <div>
+        <label>Phone Number</label>
+        <input
+          type="tel"
+          {...register('phone', { required: 'Phone number is required' })}
+        />
+        {errors.phone && <p>{errors.phone.message}</p>}
+      </div>
+      <div>
         <label>Service</label>
         <input
           type="text"
@@ -37,6 +45,12 @@ const BookingForm = ({ onSubmit }) => {
           {...register('date', { required: 'Date is required' })}
         />
         {errors.date && <p>{errors.date.message}</p>}
+      </div>
+      <div>
+        <label>Additional Notes</label>
+        <textarea
+          {...register('notes')}
+        />
       </div>
       <button type="submit">Book Service</button>
     </form>

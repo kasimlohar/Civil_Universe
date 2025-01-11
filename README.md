@@ -97,41 +97,59 @@ Civil_Universe/
 - Dotenv
 - Jsonwebtoken
 
-## Scripts
-
-- `npm start`: Start the server
-- `npm run client`: Start the client
-- `npm run server`: Start the server
-- `npm run dev`: Start both client and server concurrently
-
-## Running the Project
+## Project Setup
 
 1. Clone the repository:
    ```sh
-   git clone <your-repo-url>
+   git clone <repository-url>
+   cd Civil_Universe
    ```
 
-2. Navigate to the project directory:
-   ```sh
-   cd /d:/Civil_Universe
-   ```
-
-3. Install dependencies for the client:
+2. Install dependencies for the client:
    ```sh
    cd client
    npm install
    ```
 
-4. Install dependencies for the server:
+3. Install dependencies for the server:
    ```sh
    cd ../server
    npm install
    ```
 
-5. Start the development server:
+## Recent Changes
+
+### Added routing for Home, Login, Register, and BusinessProfile pages in App.jsx
+- Updated `client/src/App.jsx` to include routes for Home, Login, Register, and BusinessProfile pages.
+
+### Installed react-router-dom with legacy peer dependencies
+- Resolved dependency conflicts by installing `react-router-dom` with the `--legacy-peer-deps` flag.
+
+```sh
+npm install react-router-dom --legacy-peer-deps
+```
+
+### Updated package.json and package-lock.json
+- Added `react-router-dom` to dependencies in `package.json` and `package-lock.json`.
+
+## Running the Project
+
+1. Start the client:
    ```sh
-   cd ..
-   npm run dev
+   cd client
+   npm start
    ```
 
-This will start both the client and server concurrently.
+2. Start the server:
+   ```sh
+   cd ../server
+   npm start
+   ```
+
+## Contributing
+
+Please follow the [contribution guidelines](CONTRIBUTING.md) for submitting pull requests to this repository.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

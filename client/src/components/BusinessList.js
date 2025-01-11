@@ -47,7 +47,14 @@ const BusinessList = () => {
       />
       <ul>
         {currentBusinesses.map(business => (
-          <li key={business.id}>{business.name}</li>
+          <li key={business.id}>
+            <h2>{business.name}</h2>
+            <p>{business.location}</p>
+            <p>Rating: {business.rating}</p>
+            <p>Contact: {business.contact}</p>
+            <p>Categories: {business.categories.join(', ')}</p>
+            <a href={business.portfolio} target="_blank" rel="noopener noreferrer">View Portfolio</a>
+          </li>
         ))}
       </ul>
       <div>

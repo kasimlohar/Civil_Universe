@@ -1,11 +1,18 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import axiosInstance from '../utils/axiosInstance';
 
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
 
-  const onSubmit = data => {
-    console.log(data);
+  const onSubmit = async data => {
+    try {
+      const response = await axiosInstance.post('/login', data);
+      localStorage.setItem('token', response.data.token);
+      console.log('Login successful');
+    } catch (error) {
+      console.error('Login failed', error);
+    }
   };
 
   return (

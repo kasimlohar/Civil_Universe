@@ -1,22 +1,18 @@
 module.exports = {
-  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
-  darkMode: false, // or 'media' or 'class'
+  content: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   theme: {
     extend: {
       colors: {
-        primary: '#007bff',
-        secondary: '#6c757d',
-        success: '#28a745',
-        danger: '#dc3545',
-        warning: '#ffc107',
-        info: '#17a2b8',
-        light: '#f8f9fa',
-        dark: '#343a40',
+        primary: '#143D30',
+        secondary: '#F05A28',
+        background: '#F9F4E6',
+        'muted-green': '#4F6D5A',
+        'warm-gray': '#D9D9D9',
+        'soft-blue': '#A3D4D0',
+        golden: '#F0C75E',
+        charcoal: '#333333',
       },
     },
-  },
-  variants: {
-    extend: {},
   },
   plugins: [],
 };

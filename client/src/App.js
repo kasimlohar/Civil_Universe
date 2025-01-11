@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store';
-import Profile from './components/Profile';
-import Booking from './components/Booking';
-import BusinessList from './components/BusinessList';
-import BusinessListings from './components/BusinessListings';
-import Home from './pages/Home';
 import Navbar from './pages/Navbar';
 import Footer from './pages/Footer';
-import BusinessCard from './components/BusinessCard';
+import ErrorBoundary from './components/ErrorBoundary';
+
+const Profile = lazy(() => import('./components/Profile'));
+const Booking = lazy(() => import('./components/Booking'));
+const BusinessList = lazy(() => import('./components/BusinessList'));
+const BusinessListings = lazy(() => import('./components/BusinessListings'));
+const Home = lazy(() => import('./pages/Home'));
+const BusinessCard = lazy(() => import('./components/BusinessCard'));
 
 function App() {
   const testBusiness = {
@@ -27,14 +29,18 @@ function App() {
       <BrowserRouter>
         <div className="App">
           <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/business-listings" element={<BusinessListings />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/booking" element={<Booking />} />
-            <Route path="/business-list" element={<BusinessList />} />
-            <Route path="/test-card" element={<BusinessCard {...testBusiness} />} />
-          </Routes>
+          <ErrorBoundary>
+            <Suspense fallback={<div>Loading...</div>}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/business-listings" element={<BusinessListings />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/booking" element={<Booking />} />
+                <Route path="/business-list" element={<BusinessList />} />
+                <Route path="/test-card" element={<BusinessCard {...testBusiness} />} />
+              </Routes>
+            </Suspense>
+          </ErrorBoundary>
           <Footer />
         </div>
       </BrowserRouter>

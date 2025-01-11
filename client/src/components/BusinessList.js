@@ -9,9 +9,14 @@ const BusinessList = () => {
   useEffect(() => {
     // Fetch the list of businesses from an API or a static file
     const fetchBusinesses = async () => {
-      const response = await fetch('/path/to/businesses/api');
-      const data = await response.json();
-      setBusinesses(data);
+      try {
+        const response = await fetch('/path/to/businesses/api');
+        const data = await response.json();
+        console.log('Fetched businesses:', data); // Debugging log
+        setBusinesses(data);
+      } catch (error) {
+        console.error('Error fetching businesses:', error); // Debugging log
+      }
     };
 
     fetchBusinesses();

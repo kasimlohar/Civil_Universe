@@ -11,7 +11,7 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-bold mb-4">Civil Universe</h3>
             <p className="text-warm-gray mb-4">
-              Connecting you with trusted civil service professionals for all your construction and design needs.
+            Connecting you with trusted professionals for all your construction and design needs.
             </p>
             <div className="flex space-x-4">
               <a 
@@ -109,11 +109,11 @@ const Footer = () => {
             <div className="space-y-4">
               <p className="flex items-center text-warm-gray">
                 <FaMapMarkerAlt className="mr-2" />
-                123 Construction Ave, Building City
+                Dhule, Maharashtra, India, 424001
               </p>
               <p className="flex items-center text-warm-gray">
                 <FaPhone className="mr-2" />
-                (555) 123-4567
+                +91 123-456-7890
               </p>
               <p className="flex items-center text-warm-gray">
                 <FaEnvelope className="mr-2" />

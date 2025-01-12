@@ -4,10 +4,16 @@ import { FaUsers, FaHandshake, FaLightbulb, FaChartLine } from 'react-icons/fa';
 const About = () => {
   const teamMembers = [
     {
-      name: 'John Smith',
-      role: 'CEO & Founder',
+      name: 'Hemraj Metkar',
+      role: 'Co-Founder & Business Operations Lead',
       image: 'https://via.placeholder.com/150',
-      bio: 'Civil engineer with 15+ years of experience in construction management.'
+      bio: 'Expert in business operations and client relationships.'
+    },
+    {
+      name: 'Kasim Lohar',
+      role: 'Co-Founder & Technical Lead',
+      image: 'https://via.placeholder.com/150',
+      bio: 'Focused on technology and platform innovation.'
     },
     // Add more team members
   ];
@@ -16,7 +22,7 @@ const About = () => {
     {
       icon: <FaUsers className="text-4xl text-secondary" />,
       title: 'Customer First',
-      description: 'We prioritize our customers\' needs and satisfaction above all else.'
+      description: 'We prioritize our customer\'s needs and satisfaction above all else.'
     },
     {
       icon: <FaHandshake className="text-4xl text-secondary" />,
@@ -53,7 +59,7 @@ const About = () => {
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl font-bold text-primary mb-8">Our Story</h2>
             <p className="text-lg text-charcoal mb-6">
-              Founded in 2023, Civil Universe emerged from a vision to transform how construction
+              Founded in 2025, Civil Universe emerged from a vision to transform how construction
               services are discovered and delivered. We recognized the need for a platform that
               seamlessly connects skilled professionals with clients seeking quality construction
               services.
@@ -82,7 +88,7 @@ const About = () => {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-primary mb-12 text-center">Our Team</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-center">
             {teamMembers.map((member, index) => (
               <div key={index} className="text-center">
                 <img

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// Fix: Change fa6 to fa
 import { FaSearch, FaBuilding, FaUserPlus } from 'react-icons/fa';
+import RotatingTagline from '../components/RotatingTagline';
 
 const Home = () => {
   return (
@@ -17,9 +17,7 @@ const Home = () => {
         </div>
         
         <div className="relative container mx-auto px-4 h-full flex flex-col items-center justify-center text-white">
-          <h1 className="text-5xl font-bold mb-6 text-center">
-            Find Trusted Civil Services
-          </h1>
+          <RotatingTagline />
           
           {/* Search Bar */}
           <div className="w-full max-w-3xl bg-white rounded-lg shadow-xl p-2">

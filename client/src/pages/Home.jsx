@@ -41,6 +41,17 @@ const Home = () => {
         />
       </div>
 
+      {/* Hero Section */}
+      <div className="relative h-64">
+        <div className="absolute inset-0">
+          <img
+            src="/images/hero-bg2.jpg"
+            alt="Construction site"
+            className="w-full h-full object-cover mix-blend-overlay"
+          />
+        </div>
+      </div>
+
       {/* Featured Businesses */}
       <section className="mt-10 p-4">
         <h2 className="text-2xl font-semibold mb-4">Featured Businesses</h2>

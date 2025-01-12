@@ -10,7 +10,7 @@ const Home = () => {
       <div className="relative h-[600px] bg-gradient-to-r from-primary/90 to-primary">
         <div className="absolute inset-0">
           <img
-            src="/images/hero-bg.jpg"
+            src="/images/hero-bg2.jpg"
             alt="Construction site"
             className="w-full h-full object-cover mix-blend-overlay"
           />

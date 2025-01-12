@@ -6,6 +6,13 @@ function Navbar() {
 
   return (
     <nav className="navbar">
+      <div className="flex items-center">
+        <img 
+          src="/logo.svg"
+          alt="Civil Universe Logo"
+          className="h-16 w-auto"
+        />
+      </div>
       <h2>Civil Universe</h2>
       <ul>
         <li><Link to="/">Home</Link></li>

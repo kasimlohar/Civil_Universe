@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux'; // Add this import
-import { FaBars, FaTimes, FaBuilding } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
+import { FaBars, FaTimes } from 'react-icons/fa';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,12 +16,15 @@ const Navbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center">
-            <FaBuilding className="h-8 w-8 text-secondary mr-2" />
-            <span className="text-xl font-bold">Civil Universe</span>
-          </Link>
+                <Link to="/" className="flex items-center justify-center">
+                <img 
+                  src="/logo.svg" 
+                  alt="Civil Universe Logo" 
+                  className="h-16 w-auto mr-2 p-3"
+                />
+                </Link>
 
-          {/* Desktop Navigation */}
+                {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             <Link to="/" className="hover:text-secondary transition-colors">Home</Link>
             <Link to="/business-listings" className="hover:text-secondary transition-colors">Businesses</Link>

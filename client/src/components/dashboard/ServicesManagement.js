@@ -1,20 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaEdit, FaTrash, FaDollarSign, FaClock } from 'react-icons/fa';
+import axiosInstance from '../../utils/axiosInstance';
+import Toast from '../common/Toast';
 
 const ServicesManagement = () => {
   const [showAddForm, setShowAddForm] = useState(false);
-  const [services, setServices] = useState([
-    {
-      id: 1,
-      name: 'Construction Consultation',
-      description: 'Professional consultation for construction projects',
-      price: 100,
-      duration: '1 hour',
-      category: 'Consultation',
-      status: 'active',
-    },
-    // Add more sample services
-  ]);
+  const [services, setServices] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const response = await axiosInstance.get('/services');
+        setServices(response.data);
+      } catch (error) {
+        console.error('Error fetching services:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchServices();
+  }, []);
 
   const ServiceForm = ({ service, onSubmit, onCancel }) => (
     <div className="bg-background p-6 rounded-lg mb-6">

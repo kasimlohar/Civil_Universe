@@ -1,8 +1,18 @@
 import { configureStore } from '@reduxjs/toolkit';
-import rootReducer from './reducers';
+import authReducer from './slices/authSlice';
+import userReducer from './slices/userSlice';
+import businessReducer from './slices/businessSlice';
+import bookingReducer from './slices/bookingSlice';
 
-const store = configureStore({
-  reducer: rootReducer,
+export const store = configureStore({
+  reducer: {
+    auth: authReducer,
+    user: userReducer,
+    business: businessReducer,
+    booking: bookingReducer
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false
+    })
 });
-
-export default store;

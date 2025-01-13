@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { FaUser, FaCalendar, FaCog, FaHistory, FaBookmark, FaStar } from 'react-icons/fa';
 import BookingsList from '../../components/dashboard/BookingsList';

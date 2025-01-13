@@ -1,31 +1,25 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
-import axiosInstance from '../utils/axiosInstance';
-import FormInput from '../components/FormInput';
-import Button from '../components/Button';
+import { Link } from 'react-router-dom';
+import RegisterForm from '../components/auth/RegisterForm';
 
 const Register = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
-
-  const onSubmit = async data => {
-    try {
-      const response = await axiosInstance.post('/register', data);
-      localStorage.setItem('token', response.data.token);
-      console.log('Registration successful');
-    } catch (error) {
-      console.error('Registration failed', error);
-    }
-  };
-
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <FormInput label="Name" type="text" register={register} required="Name is required" errors={errors} />
-      <FormInput label="Email" type="email" register={register} required="Email is required" errors={errors} />
-      <FormInput label="Phone" type="tel" register={register} required="Phone number is required" errors={errors} />
-      <FormInput label="Password" type="password" register={register} required="Password is required" errors={errors} />
-      <FormInput label="Confirm Password" type="password" register={register} required="Confirm password is required" errors={errors} />
-      <Button type="submit">Register</Button>
-    </form>
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-8">
+        <div>
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+            Create your account
+          </h2>
+          <p className="mt-2 text-center text-sm text-gray-600">
+            Or{' '}
+            <Link to="/login" className="font-medium text-primary hover:text-primary/80">
+              sign in to your existing account
+            </Link>
+          </p>
+        </div>
+        <RegisterForm />
+      </div>
+    </div>
   );
 };
 

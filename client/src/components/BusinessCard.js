@@ -1,26 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaStar, FaMapMarkerAlt, FaPhone } from 'react-icons/fa';
+import Rating from './common/Rating';
 
 const BusinessCard = ({ business }) => {
-  const {
-    id,
-    name,
-    description,
-    rating,
-    reviewCount,
-    location,
-    contact,
-    imageUrl,
-    categories
-  } = business;
+  const { id, name, description, rating, reviewCount, location, contact, coverImage, categories } = business;
 
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-      <img
-        src={imageUrl || '/images/business-placeholder.jpg'}
+      <img 
+        src={coverImage || '/default-business.jpg'} 
         alt={name}
-        className="w-full h-48 object-cover"
+        className="w-full h-48 object-cover rounded-t-lg"
       />
       
       <div className="p-4">

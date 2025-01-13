@@ -1,6 +1,7 @@
-# Civil Universe
+# Civil Universe - Full Stack Project
 
-Civil Universe is a platform for finding and booking civil-related businesses such as contractors, architects, interior designers, and more.
+## Project Overview
+A platform connecting civil-related businesses with potential customers.
 
 ## Features
 
@@ -16,6 +17,103 @@ Civil Universe is a platform for finding and booking civil-related businesses su
 - Frontend: React, Redux, Tailwind CSS
 - Backend: Node.js, Express, MongoDB, Mongoose
 - Authentication: JWT, bcryptjs
+
+## Frontend Status (75% Complete)
+
+### Completed Features ✅
+- Authentication System
+- User Dashboard
+- Business Listings
+- Search System
+- Error Handling
+- Loading States
+- Form Validations
+- Protected Routes
+- Business Analytics (Basic)
+- Responsive Design
+
+### Remaining Frontend Work 🚧
+1. Real-time Features (25% remaining)
+   - Chat System Implementation
+   - Live Notifications
+   - Real-time Booking Updates
+
+2. Advanced Features (30% remaining)
+   - Payment Integration
+   - PDF/Document Generation
+   - Advanced Analytics Dashboard
+   - File Upload System
+
+3. Testing (80% remaining)
+   - Unit Tests
+   - Integration Tests
+   - E2E Tests
+
+## Backend Status (40% Complete)
+
+### Completed Backend Features ✅
+- Basic API Setup
+- Authentication Routes
+- User Management
+- Database Schema
+- Basic CRUD Operations
+
+### Remaining Backend Work 🚧
+1. Core Features (60% remaining)
+   - Business Logic Implementation
+   - Booking System
+   - Review System
+   - Analytics Engine
+
+2. Advanced Features (80% remaining)
+   - Payment Processing
+   - Real-time Communication
+   - File Management
+   - Email Service
+
+3. Security & Optimization (70% remaining)
+   - Rate Limiting
+   - Data Validation
+   - Caching
+   - API Documentation
+
+## Backend Roadmap
+
+### Phase 1: Core API Development
+```bash
+1. User Management ✅
+   - Authentication
+   - Authorization
+   - Profile Management
+
+2. Business Management 🚧
+   - Business Profiles
+   - Service Categories
+   - Portfolio Management
+
+3. Booking System 🚧
+   - Appointment Scheduling
+   - Status Management
+   - Notifications
+```
+
+### Phase 2: Advanced Features
+```bash
+1. Payment Integration
+   - Stripe Setup
+   - Transaction Management
+   - Invoice Generation
+
+2. Real-time Features
+   - WebSocket Setup
+   - Chat System
+   - Live Notifications
+
+3. File Management
+   - Image Upload
+   - Document Storage
+   - PDF Generation
+```
 
 ## Getting Started
 
@@ -33,21 +131,36 @@ Civil Universe is a platform for finding and booking civil-related businesses su
    cd civil_universe
    ```
 
-2. Install dependencies for the client:
+### Frontend Setup
+```bash
+cd client
+npm install
+npm start
+```
 
-   ```sh
-   cd client
-   npm install
-   ```
-
-3. Install dependencies for the server:
-
-   ```sh
-   cd ../server
-   npm install
-   ```
+### Backend Setup
+```bash
+cd server
+npm install
+npm run dev
+```
 
 ### Environment Variables
+
+Frontend (.env):
+```
+REACT_APP_API_URL=http://localhost:5000
+REACT_APP_STRIPE_KEY=your_stripe_key
+REACT_APP_SOCKET_URL=ws://localhost:5000
+```
+
+Backend (.env):
+```
+PORT=5000
+MONGODB_URI=your_mongodb_uri
+JWT_SECRET=your_jwt_secret
+STRIPE_SECRET_KEY=your_stripe_secret
+```
 
 Create a `.env` file in the `server` directory and add the following environment variables:
 
@@ -74,6 +187,34 @@ Replace `<username>`, `<password>`, `<cluster-url>`, and `<database>` with your 
    npm start
    ```
 
+## Database Schema Overview
+```javascript
+// User Schema
+- id
+- name
+- email
+- password
+- role
+- profile
+
+// Business Schema
+- id
+- name
+- description
+- services
+- location
+- ratings
+- portfolio
+
+// Booking Schema
+- id
+- userId
+- businessId
+- serviceId
+- date
+- status
+```
+
 ### API Endpoints
 
 - `GET /api/businesses`: Get all businesses
@@ -81,6 +222,26 @@ Replace `<username>`, `<password>`, `<cluster-url>`, and `<database>` with your 
 - `POST /api/businesses`: Create a new business (protected route)
 - `POST /api/users/register`: Register a new user
 - `POST /api/users/login`: Login user
+
+## API Routes Structure
+```bash
+/api
+├── /auth
+│   ├── /login
+│   ├── /register
+│   └── /verify
+├── /users
+│   ├── /profile
+│   └── /settings
+├── /businesses
+│   ├── /listings
+│   ├── /services
+│   └── /reviews
+└── /bookings
+    ├── /create
+    ├── /status
+    └── /history
+```
 
 ### Frontend Components
 
@@ -109,6 +270,33 @@ Replace `<username>`, `<password>`, `<cluster-url>`, and `<database>` with your 
 - `middleware`: Contains middleware functions
   - `auth.js`: Authentication middleware
 - `db.js`: Database connection setup
+
+## Contributing Guide
+1. Fork the repository
+2. Create feature branch
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+3. Commit changes
+   ```bash
+   git commit -m "feat: add your feature"
+   ```
+4. Push to branch
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+5. Open Pull Request
+
+## Running Tests
+```bash
+# Frontend Tests
+cd client
+npm test
+
+# Backend Tests
+cd server
+npm test
+```
 
 ### Contributing
 

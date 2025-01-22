@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5000/api', // Update with your backend API URL
+  baseURL: 'http://localhost:5000/api', // Remove process.env and set direct URL for testing
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json'
@@ -19,13 +19,11 @@ axiosInstance.interceptors.request.use(
   error => Promise.reject(error)
 );
 
+// Add response interceptor for debugging
 axiosInstance.interceptors.response.use(
   response => response,
   error => {
-    if (error.response?.status === 401) {
-      localStorage.removeItem('token');
-      window.location.href = '/login';
-    }
+    console.error('API Error:', error.response || error);
     return Promise.reject(error);
   }
 );

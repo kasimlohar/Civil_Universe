@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axiosInstance from '../utils/axiosInstance';
 import BusinessCard from './BusinessCard';
 import LoadingSpinner from './common/LoadingSpinner';
+import Rating from './common/Rating';
 
 const BusinessList = ({ type = 'all', filters = {} }) => {
   const [businesses, setBusinesses] = useState([]);
@@ -35,7 +36,11 @@ const BusinessList = ({ type = 'all', filters = {} }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {businesses.map(business => (
-        <BusinessCard key={business.id} business={business} />
+        <BusinessCard 
+          key={business.id} 
+          business={business}
+          rating={<Rating value={business.rating} readOnly size="sm" />}
+        />
       ))}
     </div>
   );

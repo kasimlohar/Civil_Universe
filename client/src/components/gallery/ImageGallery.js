@@ -16,7 +16,7 @@ const ImageGallery = ({ images }) => {
   };
 
   return (
-    <>
+    <div className="space-y-4">
       <div className="grid grid-cols-3 gap-2">
         {images.slice(0, 6).map((image, index) => (
           <div 
@@ -74,7 +74,7 @@ const ImageGallery = ({ images }) => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

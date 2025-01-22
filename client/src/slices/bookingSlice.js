@@ -18,18 +18,7 @@ const bookingSlice = createSlice({
   },
   reducers: {},
   extraReducers: (builder) => {
-    builder
-      .addCase(createBooking.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(createBooking.fulfilled, (state, action) => {
-        state.loading = false;
-        state.bookings.push(action.payload);
-      })
-      .addCase(createBooking.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.error.message;
-      });
+    // ...existing code...
   }
 });
 

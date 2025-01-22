@@ -1,4 +1,9 @@
 import '@testing-library/jest-dom';
+import { configure } from '@testing-library/react';
+
+// Configure testing library
+configure({ asyncUtilTimeout: 5000 });
+
 import 'jest-canvas-mock';
 
 global.matchMedia = global.matchMedia || function() {

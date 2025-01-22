@@ -14,7 +14,7 @@ const renderWithProviders = (ui) => {
 };
 
 describe('Home Component', () => {
-  test('renders main sections', () => {
+  it('renders main sections', () => {
     renderWithProviders(<Home />);
     expect(screen.getByText(/Featured Businesses/i)).toBeInTheDocument();
   });

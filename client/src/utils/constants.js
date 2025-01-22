@@ -15,6 +15,13 @@ export const BUSINESS_CATEGORIES = [
   'Renovation'
 ];
 
+export const SERVICE_TYPES = {
+  CONSTRUCTION: 'construction',
+  DESIGN: 'design',
+  MAINTENANCE: 'maintenance',
+  CONSULTATION: 'consultation'
+};
+
 export const BOOKING_STATUS = {
   PENDING: 'pending',
   CONFIRMED: 'confirmed',

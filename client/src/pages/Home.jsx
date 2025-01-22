@@ -17,6 +17,9 @@ const Home = () => {
             className="w-full h-full object-cover mix-blend-overlay"
           />
         </div>
+        <div className="relative container mx-auto px-4 h-full flex flex-col items-center justify-center text-white">
+          <RotatingTagline />
+        </div>
       </div>
 
       {/* Search Bar */}

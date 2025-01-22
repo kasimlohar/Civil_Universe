@@ -1,44 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import BusinessAnalytics from '../analytics/BusinessAnalytics';
-import ServiceManagement from '../services/ServiceManagement';
-import BookingCalendar from '../booking/BookingCalendar';
+import DashboardMetrics from '../analytics/DashboardMetrics';
+import BookingManager from '../booking/BookingManager';
+import ServiceManager from '../services/ServiceManager';
+import LoadingSpinner from '../common/LoadingSpinner';
 
 const BusinessDashboard = () => {
-  const { user } = useSelector(state => state.auth);
-  const [activeTab, setActiveTab] = useState('analytics');
+  const [activeTab, setActiveTab] = useState('overview');
+  const [loading, setLoading] = useState(false);
+  const { business } = useSelector(state => state.business);
 
-  const renderContent = () => {
-    switch(activeTab) {
-      case 'analytics':
-        return <BusinessAnalytics businessId={user.businessId} />;
-      case 'services':
-        return <ServiceManagement />;
-      case 'bookings':
-        return <BookingCalendar />;
-      default:
-        return <BusinessAnalytics businessId={user.businessId} />;
-    }
+  const tabs = {
+    overview: <DashboardMetrics businessId={business.id} />,
+    bookings: <BookingManager businessId={business.id} />,
+    services: <ServiceManager businessId={business.id} />
   };
 
   return (
     <div className="container mx-auto px-4 py-8">
+      {/* Tab navigation */}
       <div className="flex space-x-4 mb-8">
-        {['analytics', 'services', 'bookings'].map(tab => (
+        {Object.keys(tabs).map(tab => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
             className={`px-4 py-2 rounded ${
-              activeTab === tab 
-                ? 'bg-primary text-white' 
-                : 'bg-gray-100'
+              activeTab === tab ? 'bg-primary text-white' : 'bg-gray-100'
             }`}
           >
             {tab.charAt(0).toUpperCase() + tab.slice(1)}
           </button>
         ))}
       </div>
-      {renderContent()}
+
+      {/* Active tab content */}
+      {loading ? <LoadingSpinner /> : tabs[activeTab]}
     </div>
   );
 };

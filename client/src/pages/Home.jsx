@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaSearch, FaBuilding, FaUserPlus } from 'react-icons/fa';
+import { FaArrowRight } from 'react-icons/fa';
 import RotatingTagline from '../components/RotatingTagline';
-import BusinessList from '../components/BusinessList';
 import SearchBar from '../components/search/SearchBar';
+import FeaturedBusinesses from '../components/FeaturedBusinesses';
 
 const Home = () => {
   return (
@@ -22,11 +22,19 @@ const Home = () => {
       {/* Search Bar */}
       <SearchBar />
 
-      {/* Featured Businesses */}
+      {/* Featured Businesses Section */}
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-primary mb-8">Featured Businesses</h2>
-          <BusinessList type="featured" />
+          <div className="flex justify-between items-center mb-8">
+            <h2 className="text-3xl font-bold text-primary">Featured Businesses</h2>
+            <Link 
+              to="/business-listings" 
+              className="flex items-center text-secondary hover:text-primary transition-colors"
+            >
+              View All <FaArrowRight className="ml-2" />
+            </Link>
+          </div>
+          <FeaturedBusinesses />
         </div>
       </section>
     </div>

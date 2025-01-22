@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaSearch, FaBuilding, FaUserPlus } from 'react-icons/fa';
 import RotatingTagline from '../components/RotatingTagline';
+import FeaturedBusinesses from '../components/FeaturedBusinesses'; // Add this import
 
 const Home = () => {
   return (
@@ -54,9 +55,7 @@ const Home = () => {
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-primary mb-8">Featured Businesses</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Featured business cards will be mapped here */}
-          </div>
+          <FeaturedBusinesses /> {/* Replace the empty grid with this component */}
         </div>
       </section>
 

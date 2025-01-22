@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateUserSettings } from '../../slices/userSlice';
+import { updateUserProfile } from '../../slices/userSlice';
 import Toast from '../common/Toast';
 
 const UserSettings = () => {
@@ -12,7 +12,7 @@ const UserSettings = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await dispatch(updateUserSettings(formData)).unwrap();
+      await dispatch(updateUserProfile(formData)).unwrap();
       setToast({
         type: 'success',
         message: 'Settings updated successfully'

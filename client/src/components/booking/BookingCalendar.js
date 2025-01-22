@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, isToday, isSameMonth, addMonths, subMonths } from 'date-fns';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import axiosInstance from '../../utils/axiosInstance';
@@ -13,11 +13,7 @@ const BookingCalendar = ({ businessId }) => {
   const [toast, setToast] = useState(null);
   const [availableSlots, setAvailableSlots] = useState([]);
 
-  useEffect(() => {
-    fetchMonthBookings();
-  }, [currentDate, businessId]);
-
-  const fetchMonthBookings = async () => {
+  const fetchMonthBookings = useCallback(async () => {
     try {
       const start = startOfMonth(currentDate);
       const end = endOfMonth(currentDate);
@@ -34,7 +30,14 @@ const BookingCalendar = ({ businessId }) => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [currentDate, businessId]);
+
+  useEffect(() => {
+    if (selectedDate) {
+      setAvailableSlots([]); // Reset slots when date changes
+    }
+    fetchMonthBookings();
+  }, [fetchMonthBookings, selectedDate]);
 
   const getDaysInMonth = () => {
     return eachDayOfInterval({
@@ -107,6 +110,22 @@ const BookingCalendar = ({ businessId }) => {
           </div>
         ))}
       </div>
+
+      {availableSlots.length > 0 && (
+        <div className="mt-4">
+          <h3 className="font-semibold mb-2">Available Slots</h3>
+          <div className="grid grid-cols-3 gap-2">
+            {availableSlots.map((slot, index) => (
+              <button
+                key={index}
+                className="p-2 text-sm bg-gray-100 rounded hover:bg-primary hover:text-white"
+              >
+                {slot}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
 
       {toast && (
         <Toast

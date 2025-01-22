@@ -1,11 +1,39 @@
-# Civil Universe - Full Stack Project
+# Civil Universe - Full Stack Business Directory Platform 🏗️
 
-<<<<<<< HEAD
-## Project Overview
-A platform connecting civil-related businesses with potential customers.
-=======
-A comprehensive platform connecting civil-related businesses with potential customers.
->>>>>>> feature/core-components
+## Project Structure Overview
+
+### Frontend Architecture (client/)
+
+#### Core Components
+```
+src/components/
+├── common/              # Reusable UI components
+│   ├── LoadingSpinner   # Loading animation component
+│   ├── Toast           # Notification system
+│   ├── Modal           # Reusable modal component
+│   └── Rating          # Star rating component
+├── auth/               # Authentication components
+│   ├── LoginForm       # User login interface
+│   ├── RegisterForm    # User registration
+│   └── ProtectedRoute  # Route protection HOC
+└── layout/             # Layout components
+    ├── MainLayout      # Main app layout wrapper
+    ├── Navbar          # Navigation header
+    └── Footer          # Page footer
+```
+
+#### Feature Modules
+```
+src/components/
+├── analytics/          # Business analytics & reporting
+├── booking/           # Appointment scheduling system
+├── business/          # Business profile management
+├── chat/             # Real-time messaging system
+├── dashboard/         # User & business dashboards
+├── payment/          # Payment processing integration
+├── reviews/          # Rating & review system
+└── search/           # Search & filtering system
+```
 
 ## Project Overview
 
@@ -13,28 +41,29 @@ Civil Universe is a centralized platform for civil engineering services, connect
 
 ### Core Features
 
-- 🏢 **Business Listings**
-  - Comprehensive directory of civil-related businesses
-  - Advanced search & filtering
-  - Featured business showcase
-  - Ratings & reviews system
+1. **Authentication & Authorization**
+   - User registration and login
+   - Role-based access control
+   - Protected routes
+   - JWT token management
 
-- 🔐 **Authentication System**
-  - User/Business registration
-  - Role-based access control
-  - Protected routes
+2. **Business Management**
+   - Business profile creation/editing
+   - Service management
+   - Booking system
+   - Analytics dashboard
 
-- 📊 **Business Dashboard**
-  - Analytics & insights
-  - Booking management
-  - Service management
-  - Profile customization
+3. **User Features**
+   - Service search & filtering
+   - Business ratings & reviews
+   - Booking appointments
+   - Chat with businesses
 
-- 📱 **User Features**
-  - Service booking
-  - Business search
-  - Real-time chat
-  - Review system
+4. **Advanced Features**
+   - Real-time notifications
+   - Payment processing
+   - File upload system
+   - Analytics & reporting
 
 ## Tech Stack
 
@@ -153,54 +182,9 @@ Civil Universe is a centralized platform for civil engineering services, connect
 ## Getting Started
 
 1. Clone the repository:
-<<<<<<< HEAD
-
-   ```sh
-   git clone https://github.com/your-username/civil_universe.git
-   cd civil_universe
-   ```
-
-### Frontend Setup
-```bash
-cd client
-npm install
-npm start
-```
-
-### Backend Setup
-```bash
-cd server
-npm install
-npm run dev
-```
-
-### Environment Variables
-
-Frontend (.env):
-```
-REACT_APP_API_URL=http://localhost:5000
-REACT_APP_STRIPE_KEY=your_stripe_key
-REACT_APP_SOCKET_URL=ws://localhost:5000
-```
-
-Backend (.env):
-```
-PORT=5000
-MONGODB_URI=your_mongodb_uri
-JWT_SECRET=your_jwt_secret
-STRIPE_SECRET_KEY=your_stripe_secret
-```
-
-Create a `.env` file in the `server` directory and add the following environment variables:
-
-```properties
-MONGO_URI=mongodb+srv://<username>:<password>@<cluster-url>/<database>?retryWrites=true&w=majority
-JWT_SECRET=your_jwt_secret
-=======
 ```bash
 git clone https://github.com/yourusername/Civil_Universe.git
 cd Civil_Universe
->>>>>>> feature/core-components
 ```
 
 2. Install dependencies:
@@ -234,67 +218,41 @@ JWT_SECRET=your_secret_key
 # Start frontend (in client directory)
 npm start
 
-<<<<<<< HEAD
-## Database Schema Overview
-```javascript
-// User Schema
-- id
-- name
-- email
-- password
-- role
-- profile
-
-// Business Schema
-- id
-- name
-- description
-- services
-- location
-- ratings
-- portfolio
-
-// Booking Schema
-- id
-- userId
-- businessId
-- serviceId
-- date
-- status
-```
-
-### API Endpoints
-=======
 # Start backend (in server directory)
 npm run dev
 ```
->>>>>>> feature/core-components
+
+## Component Documentation
+
+### Key Components
+
+1. `RotatingTagline.js`
+   - Animated text rotation for service categories
+   - Auto-transitions with fade effects
+   - Configurable timing and content
+
+2. `BusinessCard.js`
+   - Display business information
+   - Rating display
+   - Action buttons
+   - Image handling
+
+3. `SearchBar.js`
+   - Advanced search functionality
+   - Location-based filtering
+   - Auto-suggestions
+   - Query parameter handling
+
+4. `BookingCalendar.js`
+   - Interactive calendar interface
+   - Availability management
+   - Time slot selection
+   - Booking confirmation
+
+[More component documentation to be added...]
 
 ## Project Structure
 
-<<<<<<< HEAD
-## API Routes Structure
-```bash
-/api
-├── /auth
-│   ├── /login
-│   ├── /register
-│   └── /verify
-├── /users
-│   ├── /profile
-│   └── /settings
-├── /businesses
-│   ├── /listings
-│   ├── /services
-│   └── /reviews
-└── /bookings
-    ├── /create
-    ├── /status
-    └── /history
-```
-
-### Frontend Components
-=======
 ```
 Civil_Universe/
 ├── client/                 # Frontend
@@ -311,7 +269,22 @@ Civil_Universe/
     ├── controllers/     # Route controllers
     └── utils/          # Utility functions
 ```
->>>>>>> feature/core-components
+
+### State Management
+```
+src/
+├── store/            # Redux store configuration
+├── slices/           # Redux Toolkit slices
+├── actions/          # Redux actions
+└── reducers/         # Redux reducers
+```
+
+### API Integration
+```
+src/utils/
+├── axiosInstance.js  # Axios configuration
+└── errorHandler.js   # Global error handling
+```
 
 ## Available Scripts
 
@@ -322,38 +295,7 @@ Civil_Universe/
 - `npm test`: Run tests
 - `npm run eject`: Eject from Create React App
 
-<<<<<<< HEAD
-## Contributing Guide
-1. Fork the repository
-2. Create feature branch
-   ```bash
-   git checkout -b feature/your-feature-name
-   ```
-3. Commit changes
-   ```bash
-   git commit -m "feat: add your feature"
-   ```
-4. Push to branch
-   ```bash
-   git push origin feature/your-feature-name
-   ```
-5. Open Pull Request
-
-## Running Tests
-```bash
-# Frontend Tests
-cd client
-npm test
-
-# Backend Tests
-cd server
-npm test
-```
-
-### Contributing
-=======
 ### Backend
->>>>>>> feature/core-components
 
 - `npm start`: Start production server
 - `npm run dev`: Start development server with nodemon

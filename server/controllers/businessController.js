@@ -27,6 +27,24 @@ exports.createBusiness = async (req, res) => {
     await newBusiness.save();
     res.status(201).json(newBusiness);
   } catch (error) {
-    res.status(400).json({ message: 'Error creating business' });
+    res.status(400).json({ message: error.message });
   }
 };
+
+exports.getBusinesses = async (req, res) => {
+  try {
+    const { category, location, featured } = req.query;
+    const query = {};
+    
+    if (category) query.categories = category;
+    if (location) query.location = new RegExp(location, 'i');
+    if (featured) query.featured = featured === 'true';
+
+    const businesses = await Business.find(query);
+    res.json(businesses);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// ...more controller methods...

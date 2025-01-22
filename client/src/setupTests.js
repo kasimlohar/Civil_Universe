@@ -19,7 +19,6 @@ jest.mock('react-router-dom', () => ({
   useNavigate: () => jest.fn()
 }));
 
-// Mock the socket.io-client
 jest.mock('socket.io-client', () => {
   return jest.fn(() => ({
     on: jest.fn(),
@@ -28,8 +27,8 @@ jest.mock('socket.io-client', () => {
   }));
 });
 
-import { server } from './mocks/server';
-
-beforeAll(() => server.listen());
-afterEach(() => server.resetHandlers());
-afterAll(() => server.close());
+// Note: Remove server mock if you're not using MSW
+// import { server } from './mocks/server';
+// beforeAll(() => server.listen());
+// afterEach(() => server.resetHandlers());
+// afterAll(() => server.close());

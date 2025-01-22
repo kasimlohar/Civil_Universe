@@ -8,11 +8,19 @@ const ServiceManagementSystem = () => {
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Service management logic
-  // ...existing code...
+  const fetchServices = async () => {
+    try {
+      const response = await axiosInstance.get(`/services/business/${user.businessId}`);
+      setServices(response.data);
+    } catch (error) {
+      console.error('Failed to fetch services:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <div className="max-w-4xl mx-auto p-4">
+    <div className="space-y-6">
       {/* Service management interface */}
       // ...existing code...
     </div>

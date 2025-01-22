@@ -2,24 +2,32 @@ import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-import { store } from '../../../store';
+import { configureStore } from '@reduxjs/toolkit';
+import authReducer from '../../../slices/authSlice';
 import LoginForm from '../../../components/auth/LoginForm';
 
-const renderWithProviders = (ui) => {
-  return render(
-    <Provider store={store}>
-      <BrowserRouter>{ui}</BrowserRouter>
-    </Provider>
-  );
-};
+// Create a test store
+const store = configureStore({
+  reducer: {
+    auth: authReducer
+  }
+});
 
 describe('LoginForm Component', () => {
-  test('submits form with valid credentials', async () => {
-    renderWithProviders(<LoginForm />);
+  it('submits form with valid credentials', async () => {
+    render(
+      <Provider store={store}>
+        <BrowserRouter>
+          <LoginForm />
+        </BrowserRouter>
+      </Provider>
+    );
     
-    fireEvent.change(screen.getByLabelText(/email/i), {
+    // Use getByRole instead of getByLabelText
+    fireEvent.change(screen.getByRole('textbox', { type: 'email' }), {
       target: { value: 'test@example.com' }
     });
+    
     fireEvent.change(screen.getByLabelText(/password/i), {
       target: { value: 'Password123!' }
     });

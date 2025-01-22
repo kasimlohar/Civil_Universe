@@ -1,10 +1,17 @@
 import '@testing-library/jest-dom';
 import { configure } from '@testing-library/react';
+import { server } from './tests/mocks/server';
 
 // Configure testing library
-configure({ asyncUtilTimeout: 5000 });
+configure({ 
+  asyncUtilTimeout: 5000,
+  defaultHidden: true
+});
 
-import 'jest-canvas-mock';
+// Configure MSW
+beforeAll(() => server.listen({ onUnhandledRequest: 'error' }));
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());
 
 global.matchMedia = global.matchMedia || function() {
   return {
@@ -14,9 +21,16 @@ global.matchMedia = global.matchMedia || function() {
   };
 };
 
+// Mock implementations
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
-  useNavigate: () => jest.fn()
+  useNavigate: () => jest.fn(),
+  useLocation: () => ({
+    pathname: '/',
+    search: '',
+    hash: '',
+    state: null
+  })
 }));
 
 jest.mock('socket.io-client', () => {
@@ -26,9 +40,3 @@ jest.mock('socket.io-client', () => {
     disconnect: jest.fn()
   }));
 });
-
-// Note: Remove server mock if you're not using MSW
-// import { server } from './mocks/server';
-// beforeAll(() => server.listen());
-// afterEach(() => server.resetHandlers());
-// afterAll(() => server.close());

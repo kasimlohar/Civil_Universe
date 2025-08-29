@@ -13,7 +13,22 @@ const io = initializeSocket(server);
 
 // Middleware - CORS must come first
 app.use(cors({
-  origin: ["http://localhost:5000", "https://*.replit.dev"],   // allow React dev server from port 5000 and Replit domain
+  origin: [
+    "http://localhost:5000", 
+    "https://*.replit.dev",
+    /\.replit\.dev$/,  // Allow all replit.dev subdomains
+    function(origin, callback) {
+      // Allow requests with no origin (like mobile apps or curl requests)
+      if (!origin) return callback(null, true);
+      
+      // Allow replit.dev domains
+      if (origin.includes('replit.dev')) {
+        return callback(null, true);
+      }
+      
+      callback(new Error('Not allowed by CORS'));
+    }
+  ],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));

@@ -20,6 +20,12 @@ app.use(cors({
 
 app.use(express.json());
 
+// Debug middleware to log all requests (placed before routes)
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.url}`);
+  next();
+});
+
 // Connect to MongoDB (conditionally)
 if (process.env.MONGO_URI) {
   mongoose.connect(process.env.MONGO_URI)
@@ -38,12 +44,6 @@ app.use('/api', require('./routes')); // Now businessRoutes is defined
 // Add a test route
 app.get('/api/test', (req, res) => {
   res.json({ message: 'API is working' });
-});
-
-// Debug middleware to log all requests
-app.use((req, res, next) => {
-  console.log(`${req.method} ${req.url}`);
-  next();
 });
 
 app.get('/', (req, res) => {

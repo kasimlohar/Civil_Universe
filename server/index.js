@@ -16,15 +16,19 @@ app.use(express.json());
 app.use(require('./routes'));
 
 app.use(cors({
-  origin: "http://localhost:3000",   // allow React dev server
+  origin: ["http://localhost:5000", "https://*.replit.dev"],   // allow React dev server from port 5000 and Replit domain
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
 
-// Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log('Connected to MongoDB'))
-  .catch((err) => console.error('MongoDB connection error:', err));
+// Connect to MongoDB (conditionally)
+if (process.env.MONGO_URI) {
+  mongoose.connect(process.env.MONGO_URI)
+    .then(() => console.log('Connected to MongoDB'))
+    .catch((err) => console.error('MongoDB connection error:', err));
+} else {
+  console.log('MongoDB connection skipped - MONGO_URI not provided. Database features will not work.');
+}
 
 // Routes - Fix the route prefix
 app.use('/api/businesses', businessRoutes); // Now businessRoutes is defined
@@ -50,5 +54,5 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: err.message || 'Something went wrong!' });
 });
 
-const PORT = process.env.PORT || 5000;
-server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+const PORT = process.env.PORT || 3001;
+server.listen(PORT, 'localhost', () => console.log(`Server running on port ${PORT}`));

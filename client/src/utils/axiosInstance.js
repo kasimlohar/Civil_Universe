@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:5000/api', // Remove process.env and set direct URL for testing
+  baseURL: window.location.origin.replace(':5000', ':3001') + '/api',
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json'

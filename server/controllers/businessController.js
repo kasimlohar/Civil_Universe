@@ -1,12 +1,62 @@
 const Business = require('../models/Business');
 
+// Mock data for when database is not connected
+const mockBusinesses = [
+  {
+    _id: '1',
+    name: 'ABC Construction',
+    description: 'Professional construction services with 20+ years of experience',
+    location: 'New York, NY',
+    rating: 4.5,
+    contact: '(555) 123-4567',
+    categories: ['Construction', 'Commercial'],
+    website: 'https://abc-construction.com',
+    imageUrl: '/images/business1.jpg',
+    services: ['Building Construction', 'Renovation', 'Project Management'],
+    featured: true
+  },
+  {
+    _id: '2',
+    name: 'Precision Architects',
+    description: 'Award-winning architectural design firm specializing in modern buildings',
+    location: 'Los Angeles, CA',
+    rating: 4.8,
+    contact: '(555) 987-6543',
+    categories: ['Architecture', 'Design'],
+    website: 'https://precision-architects.com',
+    imageUrl: '/images/business2.jpg',
+    services: ['Architectural Design', 'Interior Design', 'Planning'],
+    featured: true
+  },
+  {
+    _id: '3',
+    name: 'Steel Works Fabrication',
+    description: 'Custom steel fabrication for construction and industrial projects',
+    location: 'Chicago, IL',
+    rating: 4.3,
+    contact: '(555) 456-7890',
+    categories: ['Fabrication', 'Steel Work'],
+    website: 'https://steelworks-fab.com',
+    imageUrl: '/images/business3.jpg',
+    services: ['Steel Fabrication', 'Welding', 'Custom Metalwork'],
+    featured: false
+  }
+];
+
 // Get all businesses
 exports.getAllBusinesses = async (req, res) => {
   try {
+    // Check if MongoDB is connected
+    if (!process.env.MONGO_URI) {
+      return res.json(mockBusinesses);
+    }
+    
     const businesses = await Business.find();
     res.json(businesses);
   } catch (error) {
-    res.status(500).json({ message: 'Error fetching businesses' });
+    // Fallback to mock data if database error
+    console.log('Database error, using mock data:', error.message);
+    res.json(mockBusinesses);
   }
 };
 

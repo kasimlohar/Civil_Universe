@@ -20,6 +20,19 @@ exports.getFeaturedBusinesses = async (req, res) => {
   }
 };
 
+// Get business by ID
+exports.getBusinessById = async (req, res) => {
+  try {
+    const business = await Business.findById(req.params.id);
+    if (!business) {
+      return res.status(404).json({ message: 'Business not found' });
+    }
+    res.json(business);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching business' });
+  }
+};
+
 // Create a new business
 exports.createBusiness = async (req, res) => {
   try {
@@ -31,11 +44,55 @@ exports.createBusiness = async (req, res) => {
   }
 };
 
+// Update a business
+exports.updateBusiness = async (req, res) => {
+  try {
+    const business = await Business.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true, runValidators: true }
+    );
+    
+    if (!business) {
+      return res.status(404).json({ message: 'Business not found' });
+    }
+    
+    res.json(business);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+// Delete a business
+exports.deleteBusiness = async (req, res) => {
+  try {
+    const business = await Business.findByIdAndDelete(req.params.id);
+    
+    if (!business) {
+      return res.status(404).json({ message: 'Business not found' });
+    }
+    
+    res.json({ message: 'Business deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 exports.getBusinesses = async (req, res) => {
   try {
-    const { category, location, featured } = req.query;
+    const { type, category, location, featured } = req.query;
     const query = {};
-    
+
+    // If ?type=all → return everything
+    if (type === 'all') {
+      const businesses = await Business.find();
+      return res.json(businesses);
+    }
+
+    // If ?type=someCategory → filter by category
+    if (type) query.categories = type;
+
+    // Optional filters
     if (category) query.categories = category;
     if (location) query.location = new RegExp(location, 'i');
     if (featured) query.featured = featured === 'true';
@@ -47,4 +104,3 @@ exports.getBusinesses = async (req, res) => {
   }
 };
 
-// ...more controller methods...

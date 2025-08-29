@@ -1,13 +1,27 @@
-import React, { useState } from 'react';
-import { loadStripe } from '@stripe/stripe-js';
-import { Elements } from '@stripe/react-stripe-js';
-import PaymentForm from './PaymentForm';
+import React from 'react';
+import { useRazorpay } from 'react-razorpay';
+import RazorpayPaymentForm from './RazorpayPaymentForm';
 
-const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
+const PaymentProcessor = ({ amount, bookingId, onSuccess, onError }) => {
+  const { error, isLoading, Razorpay } = useRazorpay();
 
-const PaymentProcessor = () => {
-  // Payment processing logic
-  // ...existing code...
+  if (isLoading) {
+    return <div>Loading payment system...</div>;
+  }
+
+  if (error) {
+    return <div>Error loading payment system: {error}</div>;
+  }
+
+  return (
+    <RazorpayPaymentForm 
+      amount={amount} 
+      bookingId={bookingId} 
+      onSuccess={onSuccess} 
+      onError={onError} 
+      Razorpay={Razorpay}
+    />
+  );
 };
 
 export default PaymentProcessor;

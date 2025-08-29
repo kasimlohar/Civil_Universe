@@ -1,0 +1,30 @@
+/* App-specific styles */
+:root {
+  --color-primary: #143D30;
+  --color-secondary: #F05A28;
+  --color-background: #F9F4E6;
+  --color-muted-green: #4F6D5A;
+  --color-warm-gray: #D9D9D9;
+  --color-soft-blue: #A3D4D0;
+  --color-golden: #F0C75E;
+  --color-text: #333333;
+}
+
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Layout styles */
+main {
+  flex: 1;
+}
+
+/* Common component styles */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}

@@ -1,7 +1,10 @@
 const express = require('express');
 const http = require('http');
+const mongoose = require('mongoose'); // Add this line
+const cors = require("cors");
 const connectDB = require('./config/database');
 const initializeSocket = require('./services/socketService');
+const businessRoutes = require('./routes/businessRoutes'); // Add this line
 require('dotenv').config();
 
 const app = express();
@@ -12,13 +15,19 @@ const io = initializeSocket(server);
 app.use(express.json());
 app.use(require('./routes'));
 
+app.use(cors({
+  origin: "http://localhost:3000",   // allow React dev server
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
+
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('Connected to MongoDB'))
   .catch((err) => console.error('MongoDB connection error:', err));
 
 // Routes - Fix the route prefix
-app.use('/api/businesses', businessRoutes); // Update this line
+app.use('/api/businesses', businessRoutes); // Now businessRoutes is defined
 
 // Add a test route
 app.get('/api/test', (req, res) => {

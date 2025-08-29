@@ -1,5 +1,4 @@
 const Booking = require('../models/Booking');
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 exports.createBooking = async (req, res) => {
   try {
@@ -13,5 +12,3 @@ exports.createBooking = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
-
-// ...existing code...

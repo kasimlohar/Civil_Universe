@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaArrowRight } from 'react-icons/fa';
+import { FaArrowRight, FaSearch, FaBuilding } from 'react-icons/fa';
 import RotatingTagline from '../components/RotatingTagline';
 import SearchBar from '../components/search/SearchBar';
 import FeaturedBusinesses from '../components/FeaturedBusinesses';
+import TestimonialsHowItWorks from '../components/TestimonialsHowItWorks';
 
 const Home = () => {
   return (
@@ -19,11 +20,29 @@ const Home = () => {
         </div>
         <div className="relative container mx-auto px-4 h-full flex flex-col items-center justify-center text-white">
           <RotatingTagline />
+          {/* Centered Search Bar below tagline */}
+          <div className="w-full flex flex-col items-center mt-6">
+            <SearchBar />
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 mt-6 justify-center">
+              <Link
+                to="/services"
+                className="bg-secondary text-white px-6 py-3 rounded-lg font-semibold shadow hover:bg-primary transition-colors text-center flex items-center justify-center"
+              >
+                <FaSearch className="mr-2" />
+                Find Services Now
+              </Link>
+              <Link
+                to="/register-business"
+                className="bg-white text-primary px-6 py-3 rounded-lg font-semibold shadow hover:bg-primary hover:text-white transition-colors text-center flex items-center justify-center"
+              >
+                <FaBuilding className="mr-2" />
+                List Your Business
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
-
-      {/* Search Bar */}
-      <SearchBar />
 
       {/* Featured Businesses Section */}
       <section className="py-16 bg-background">
@@ -40,6 +59,8 @@ const Home = () => {
           <FeaturedBusinesses />
         </div>
       </section>
+      {/* Testimonials Section */}
+      <TestimonialsHowItWorks />
     </div>
   );
 };

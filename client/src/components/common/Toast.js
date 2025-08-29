@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { FaCheck, FaTimes, FaInfo, FaExclamationTriangle } from 'react-icons/fa';
 
-const Toast = ({ message, type = 'info', onClose, duration = 3000 }) => {
+const Toast = ({ message, type = 'info', onClose = () => {}, duration = 3000 }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       onClose();

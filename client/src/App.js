@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { store } from './store'; // Change from "import store" to "import { store }"
+import { store } from './store'; 
 import Navbar from './pages/Navbar';
 import Footer from './pages/Footer';
 import ErrorBoundary from './components/ErrorBoundary';

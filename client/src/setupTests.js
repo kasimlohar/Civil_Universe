@@ -4,6 +4,8 @@ import { server } from './tests/mocks/server';
 
 // Configure testing library
 configure({ 
+
+
   asyncUtilTimeout: 5000,
   defaultHidden: true
 });

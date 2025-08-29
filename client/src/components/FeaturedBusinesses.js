@@ -1,7 +1,7 @@
+// FeaturedBusinesses.js
 import React, { useState, useEffect } from 'react';
 import axiosInstance from '../utils/axiosInstance';
 import BusinessList from './BusinessList';
-import LoadingSpinner from './common/LoadingSpinner';
 import Toast from './common/Toast';
 
 const FeaturedBusinesses = () => {
@@ -27,7 +27,9 @@ const FeaturedBusinesses = () => {
 
   if (error) return <Toast type="error" message={error} />;
 
-  return <BusinessList businesses={businesses} loading={loading} />;
+  return (
+    <BusinessList businesses={businesses} loading={loading} error={error} />
+  );
 };
 
 export default FeaturedBusinesses;

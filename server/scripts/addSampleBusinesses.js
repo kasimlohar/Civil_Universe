@@ -49,10 +49,7 @@ const sampleBusinesses = [
 
 const addSampleBusinesses = async () => {
   try {
-    await mongoose.connect("mongodb://127.0.0.1:27017/civil_universe", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    });
+    await mongoose.connect(process.env.MONGO_URI);
     await Business.deleteMany({}); // Clear existing businesses
     const result = await Business.insertMany(sampleBusinesses);
     console.log('Sample businesses added successfully:', result.length);

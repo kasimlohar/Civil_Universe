@@ -46,6 +46,103 @@ app.get('/api/test', (req, res) => {
   res.json({ message: 'API is working' });
 });
 
+// Add a seed endpoint to populate database
+app.post('/api/seed', async (req, res) => {
+  try {
+    if (!process.env.MONGO_URI) {
+      return res.status(400).json({ message: 'Database not configured' });
+    }
+
+    const Business = require('./models/Business');
+    
+    const sampleBusinesses = [
+      {
+        name: "Premier Construction Co.",
+        description: "Leading construction company specializing in residential and commercial projects.",
+        rating: 4.8,
+        location: "Mumbai, Maharashtra",
+        contact: "+91 98765 43210",
+        imageUrl: "/images/businesses/construction-1.jpg",
+        featured: true,
+        categories: ["Construction", "Project Management"],
+        services: ["Building Construction", "Renovation"],
+        reviews: 128,
+        completedProjects: 234,
+        establishedYear: 2002
+      },
+      {
+        name: "Modern Architects & Associates",
+        description: "Award-winning architectural firm delivering innovative design solutions.",
+        rating: 4.9,
+        location: "Bangalore, Karnataka",
+        contact: "+91 98765 43211",
+        imageUrl: "/images/businesses/architect-1.jpg",
+        featured: true,
+        categories: ["Architecture", "Interior Design"],
+        services: ["Architectural Design", "3D Visualization"],
+        reviews: 96,
+        completedProjects: 156,
+        establishedYear: 2010
+      },
+      {
+        name: "Elite Fabricators",
+        description: "Specialized in custom metal fabrication and structural steel work.",
+        rating: 4.7,
+        location: "Delhi NCR",
+        contact: "+91 98765 43212",
+        imageUrl: "/images/businesses/fabrication-1.jpg",
+        featured: true,
+        categories: ["Fabrication", "Steel Work"],
+        services: ["Metal Fabrication", "Welding"],
+        reviews: 84,
+        completedProjects: 312,
+        establishedYear: 2008
+      },
+      {
+        name: "Skyline Engineers",
+        description: "Structural engineering consultancy with expertise in high-rise buildings.",
+        rating: 4.6,
+        location: "Chennai, Tamil Nadu",
+        contact: "+91 98765 43213",
+        imageUrl: "/images/businesses/engineer-1.jpg",
+        featured: false,
+        categories: ["Engineering", "Consultation"],
+        services: ["Structural Design", "Analysis", "Consultation"],
+        reviews: 72,
+        completedProjects: 189,
+        establishedYear: 2015
+      },
+      {
+        name: "Green Building Solutions",
+        description: "Sustainable construction and green building certification specialists.",
+        rating: 4.5,
+        location: "Pune, Maharashtra",
+        contact: "+91 98765 43214",
+        imageUrl: "/images/businesses/green-1.jpg",
+        featured: false,
+        categories: ["Green Building", "Sustainability"],
+        services: ["LEED Certification", "Sustainable Design", "Energy Audits"],
+        reviews: 64,
+        completedProjects: 145,
+        establishedYear: 2012
+      }
+    ];
+
+    // Clear existing businesses and add sample data
+    await Business.deleteMany({});
+    const result = await Business.insertMany(sampleBusinesses);
+    
+    res.json({ 
+      message: 'Database seeded successfully', 
+      count: result.length,
+      businesses: result 
+    });
+  } catch (error) {
+    console.error('Seed error:', error);
+    res.status(500).json({ message: 'Failed to seed database', error: error.message });
+  }
+});
+
 app.get('/', (req, res) => {
   res.send('Welcome to the Civil Universe API');
 });

@@ -4,7 +4,7 @@ const { auth, checkRole } = require('../middleware/auth');
 const businessController = require('../controllers/businessController');
 
 // Get all businesses (this was missing)
-router.get('/', businessController.getAllBusinesses);
+router.get('/', businessController.getBusinesses);
 
 // Get featured businesses
 router.get('/featured', businessController.getFeaturedBusinesses);

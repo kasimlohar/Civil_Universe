@@ -5,10 +5,19 @@ const bookingController = require('../controllers/bookingController');
 // Create a new booking
 router.post('/', bookingController.createBooking);
 
-// Add other booking routes as needed
-// Example:
-// router.get('/user/:userId', bookingController.getUserBookings);
-// router.get('/business/:businessId', bookingController.getBusinessBookings);
-// router.patch('/:id', bookingController.updateBookingStatus);
+// Get all bookings
+router.get('/', bookingController.getBookings);
+
+// Get available slots for a date
+router.get('/available-slots', bookingController.getAvailableSlots);
+
+// Get bookings for a specific business
+router.get('/business/:businessId', bookingController.getBusinessBookings);
+
+// Get bookings in date range for a business
+router.get('/business/:businessId/range', bookingController.getBookingsInRange);
+
+// Update booking status
+router.put('/:id/status', bookingController.updateBookingStatus);
 
 module.exports = router;

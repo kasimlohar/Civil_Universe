@@ -11,15 +11,14 @@ const app = express();
 const server = http.createServer(app);
 const io = initializeSocket(server);
 
-// Middleware
-app.use(express.json());
-app.use(require('./routes'));
-
+// Middleware - CORS must come first
 app.use(cors({
   origin: ["http://localhost:5000", "https://*.replit.dev"],   // allow React dev server from port 5000 and Replit domain
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
+
+app.use(express.json());
 
 // Connect to MongoDB (conditionally)
 if (process.env.MONGO_URI) {
@@ -30,8 +29,11 @@ if (process.env.MONGO_URI) {
   console.log('MongoDB connection skipped - MONGO_URI not provided. Database features will not work.');
 }
 
-// Routes - Fix the route prefix
-app.use('/api/businesses', businessRoutes); // Now businessRoutes is defined
+// Routes
+app.use('/api/businesses', businessRoutes);
+app.use('/api/auth', require('./routes/users'));
+app.use('/api/bookings', require('./routes/bookingRoutes'));
+app.use('/api', require('./routes')); // Now businessRoutes is defined
 
 // Add a test route
 app.get('/api/test', (req, res) => {

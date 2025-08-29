@@ -63,23 +63,47 @@ exports.getAllBusinesses = async (req, res) => {
 // Get featured businesses
 exports.getFeaturedBusinesses = async (req, res) => {
   try {
+    // Check if MongoDB is connected
+    if (!process.env.MONGO_URI) {
+      const featured = mockBusinesses.filter(business => business.featured);
+      return res.json(featured);
+    }
+    
     const featuredBusinesses = await Business.find({ rating: { $gte: 4.0 } });
     res.json(featuredBusinesses);
   } catch (error) {
-    res.status(500).json({ message: 'Error fetching featured businesses' });
+    // Fallback to mock data if database error
+    console.log('Database error, using mock data:', error.message);
+    const featured = mockBusinesses.filter(business => business.featured);
+    res.json(featured);
   }
 };
 
 // Get business by ID
 exports.getBusinessById = async (req, res) => {
   try {
+    // Check if MongoDB is connected
+    if (!process.env.MONGO_URI) {
+      const business = mockBusinesses.find(b => b._id === req.params.id);
+      if (!business) {
+        return res.status(404).json({ message: 'Business not found' });
+      }
+      return res.json(business);
+    }
+    
     const business = await Business.findById(req.params.id);
     if (!business) {
       return res.status(404).json({ message: 'Business not found' });
     }
     res.json(business);
   } catch (error) {
-    res.status(500).json({ message: 'Error fetching business' });
+    // Fallback to mock data
+    console.log('Database error, using mock data:', error.message);
+    const business = mockBusinesses.find(b => b._id === req.params.id);
+    if (!business) {
+      return res.status(404).json({ message: 'Business not found' });
+    }
+    res.json(business);
   }
 };
 
@@ -131,6 +155,36 @@ exports.deleteBusiness = async (req, res) => {
 exports.getBusinesses = async (req, res) => {
   try {
     const { type, category, location, featured } = req.query;
+    
+    // Check if MongoDB is connected
+    if (!process.env.MONGO_URI) {
+      let filteredBusinesses = [...mockBusinesses];
+      
+      // Apply filters to mock data
+      if (type && type !== 'all') {
+        filteredBusinesses = filteredBusinesses.filter(business => 
+          business.categories.some(cat => cat.toLowerCase().includes(type.toLowerCase()))
+        );
+      }
+      if (category) {
+        filteredBusinesses = filteredBusinesses.filter(business => 
+          business.categories.some(cat => cat.toLowerCase().includes(category.toLowerCase()))
+        );
+      }
+      if (location) {
+        filteredBusinesses = filteredBusinesses.filter(business => 
+          business.location.toLowerCase().includes(location.toLowerCase())
+        );
+      }
+      if (featured) {
+        filteredBusinesses = filteredBusinesses.filter(business => 
+          business.featured === (featured === 'true')
+        );
+      }
+      
+      return res.json(filteredBusinesses);
+    }
+
     const query = {};
 
     // If ?type=all → return everything
@@ -150,7 +204,9 @@ exports.getBusinesses = async (req, res) => {
     const businesses = await Business.find(query);
     res.json(businesses);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    // Fallback to mock data
+    console.log('Database error, using mock data:', error.message);
+    res.json(mockBusinesses);
   }
 };
 
